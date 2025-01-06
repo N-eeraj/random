@@ -25,3 +25,25 @@ test("Return random number more than 5", () => {
     expect(min5).toBeGreaterThanOrEqual(5)
   }
 })
+
+test("Return random number to be between 10 & 30", () => {
+  for (let i = 0; i < 1_000; i++) {
+    const value = RandomNumber.float({ min: 10, max: 30 })
+    expect(value).toBeGreaterThanOrEqual(10)
+    expect(value).toBeLessThanOrEqual(30)
+  }
+})
+
+test("Minimum should be lesser than maximum", () => {
+  expect(() => RandomNumber.float({ min: 11, max: 10 })).toThrow()
+})
+
+test("Throw error for non numeric min", () => {
+  // @ts-ignore
+  expect(() => RandomNumber.float({ min: "10" })).toThrow()
+})
+
+test("Throw error for non numeric max", () => {
+  // @ts-ignore
+  expect(() => RandomNumber.float({ max: "10" })).toThrow()
+})

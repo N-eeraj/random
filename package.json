@@ -1,13 +1,15 @@
 {
   "name": "@n-eeraj/random",
-  "version": "0.0.1",
+  "version": "0.0.133",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/index.ts",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "publish-package-beta": "tsc && npm publish --access public --tag beta",
+    "publish-package": "tsc && npm publish --access public"
   },
   "keywords": [],
   "author": "N-eeraj",
