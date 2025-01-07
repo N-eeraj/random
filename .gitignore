@@ -2,6 +2,7 @@ node_modules
 dist
 coverage
 *.tgz
+src/dev.ts
 
 # build files
 RandomNumber

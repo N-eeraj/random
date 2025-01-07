@@ -14,6 +14,7 @@
   ],
   "exclude": [
     "src/**/*.test.ts",
+    "src/dev.ts",
     "node_modules"                  // Exclude the 'node_modules' folder
   ]
 }

@@ -4,35 +4,96 @@ import {
 } from "vitest"
 import RandomNumber from "./index"
 
-test("Return random number", () => {
+const ITERATIONS = 1_000
+const DEFAULT = {
+  MIN: 0,
+  MAX: 1,
+}
+const ONLY_MAX = 5
+const ONLY_MIN = 5
+
+const MIN_MAX = {
+  MIN: 10,
+  MAX: 30,
+}
+
+const FLOAT_MIN_MAX = {
+  MIN: 10,
+  MAX: 30,
+}
+
+const NEGATIVE_MAX = -10
+const NEGATIVE_MIN = -10
+
+const NEGATIVE_MIN_MAX = {
+  MIN: -10.5,
+  MAX: -10,
+}
+
+test(`Return random number between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
   const float = RandomNumber.float()
-  for (let i = 0; i < 1_000; i++) {
-    expect(float).toBeLessThanOrEqual(1)
-    expect(float).toBeGreaterThanOrEqual(0)
+  for (let i = 0; i < ITERATIONS; i++) {
+    expect(float).toBeGreaterThanOrEqual(DEFAULT.MIN)
+    expect(float).toBeLessThanOrEqual(DEFAULT.MAX)
   }
 })
 
-test("Return random number less than 5", () => {
-  for (let i = 0; i < 1_000; i++) {
-    const max5 = RandomNumber.float({ max: 5 })
-    expect(max5).toBeLessThanOrEqual(5)
+test(`Return random number less than ${ONLY_MAX}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const onlyMax = RandomNumber.float({ max: ONLY_MAX })
+    expect(onlyMax).toBeLessThanOrEqual(ONLY_MAX)
   }
 })
 
-test("Return random number more than 5", () => {
-  for (let i = 0; i < 1_000; i++) {
-    const min5 = RandomNumber.float({ min: 5 })
-    expect(min5).toBeGreaterThanOrEqual(5)
+test(`Return random number more than ${ONLY_MIN}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const onlyMin = RandomNumber.float({ min: ONLY_MIN })
+    expect(onlyMin).toBeGreaterThanOrEqual(ONLY_MIN)
   }
 })
 
-test("Return random number to be between 10 & 30", () => {
-  for (let i = 0; i < 1_000; i++) {
-    const value = RandomNumber.float({ min: 10, max: 30 })
-    expect(value).toBeGreaterThanOrEqual(10)
-    expect(value).toBeLessThanOrEqual(30)
+test(`Return random number to be between ${MIN_MAX.MIN} & ${MIN_MAX.MAX}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ min: MIN_MAX.MIN, max: MIN_MAX.MAX })
+    expect(value).toBeGreaterThanOrEqual(MIN_MAX.MIN)
+    expect(value).toBeLessThanOrEqual(MIN_MAX.MAX)
   }
 })
+
+test(`Return random number to be between ${FLOAT_MIN_MAX.MIN} & ${FLOAT_MIN_MAX.MAX}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ min: FLOAT_MIN_MAX.MIN, max: FLOAT_MIN_MAX.MAX })
+    expect(value).toBeGreaterThanOrEqual(FLOAT_MIN_MAX.MIN)
+    expect(value).toBeLessThanOrEqual(FLOAT_MIN_MAX.MAX)
+  }
+})
+
+// negative values
+
+test(`Return random number to less than ${NEGATIVE_MAX}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ max: NEGATIVE_MAX })
+    expect(value).toBeLessThanOrEqual(NEGATIVE_MAX)
+  }
+})
+
+test(`Return random number to more than ${NEGATIVE_MIN}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ min: NEGATIVE_MIN })
+    expect(value).toBeGreaterThanOrEqual(NEGATIVE_MIN)
+  }
+})
+
+test(`Return random number to be between ${NEGATIVE_MIN_MAX.MIN} & ${NEGATIVE_MIN_MAX.MAX}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ min: NEGATIVE_MIN_MAX.MIN, max: NEGATIVE_MIN_MAX.MAX })
+    expect(value).toBeGreaterThanOrEqual(NEGATIVE_MIN_MAX.MIN)
+    expect(value).toBeLessThanOrEqual(NEGATIVE_MIN_MAX.MAX)
+  }
+})
+
+
+// error cases
 
 test("Minimum should be lesser than maximum", () => {
   expect(() => RandomNumber.float({ min: 11, max: 10 })).toThrow()

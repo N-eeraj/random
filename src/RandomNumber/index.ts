@@ -14,13 +14,15 @@ export default class RandomNumber {
     if (min !== undefined && max !== undefined && min >= max) {
       throw new Error(`min should be lesser than max, received min: ${min} & max: ${max}`)
     }
+
     let value = Math.random()
-    if (max) {
-      value *= max
+    if (max !== undefined || (min !== undefined && min < 0)) {
+      value *= ((max ?? 1) - (min ?? 0))
     }
-    if (min && value < min) {
-      value += min
+    if (min === undefined && max !== undefined && max < 0) {
+      value += max
     }
+    value += (min ?? 0)
     return value
   }  
 }
