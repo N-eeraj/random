@@ -1,6 +1,9 @@
-interface FloatArgs {
+interface IntArgs {
   max?: number
   min?: number
+}
+
+interface FloatArgs extends IntArgs {
   precision?: number
 }
 
@@ -34,5 +37,21 @@ export default class RandomNumber {
     }
 
     return value
-  }  
+  }
+
+  static int({ min, max }: IntArgs = {}) {
+    // args validation
+    if (min !== undefined && typeof min !== "number") {
+      throw new Error(`min must be a number, received ${min} of type ${typeof min}`)
+    }
+    if (max !== undefined && typeof max !== "number") {
+      throw new Error(`max must be a number, received ${max} of type ${typeof max}`)
+    }
+
+    return this.float({
+      min: min ? Math.floor(min) : Math.ceil(max ?? 100) - 100,
+      max: Math.ceil(max ?? 100),
+      precision: 0,
+    })
+  }
 }

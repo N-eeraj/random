@@ -18,8 +18,8 @@ const MIN_MAX = {
 }
 
 const FLOAT_MIN_MAX = {
-  MIN: 10,
-  MAX: 30,
+  MIN: 10.25,
+  MAX: 10.75,
 }
 
 const NEGATIVE_MAX = -10
@@ -32,7 +32,7 @@ const NEGATIVE_MIN_MAX = {
 
 const PRECISION = 4
 
-test(`Return random number between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
+test(`Return random float between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
   const float = RandomNumber.float()
   for (let i = 0; i < ITERATIONS; i++) {
     expect(float).toBeGreaterThanOrEqual(DEFAULT.MIN)
@@ -40,21 +40,21 @@ test(`Return random number between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
   }
 })
 
-test(`Return random number less than ${ONLY_MAX}`, () => {
+test(`Return random float less than ${ONLY_MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const onlyMax = RandomNumber.float({ max: ONLY_MAX })
     expect(onlyMax).toBeLessThanOrEqual(ONLY_MAX)
   }
 })
 
-test(`Return random number more than ${ONLY_MIN}`, () => {
+test(`Return random float more than ${ONLY_MIN}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const onlyMin = RandomNumber.float({ min: ONLY_MIN })
     expect(onlyMin).toBeGreaterThanOrEqual(ONLY_MIN)
   }
 })
 
-test(`Return random number to be between ${MIN_MAX.MIN} & ${MIN_MAX.MAX}`, () => {
+test(`Return random float to be between ${MIN_MAX.MIN} & ${MIN_MAX.MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ min: MIN_MAX.MIN, max: MIN_MAX.MAX })
     expect(value).toBeGreaterThanOrEqual(MIN_MAX.MIN)
@@ -62,7 +62,7 @@ test(`Return random number to be between ${MIN_MAX.MIN} & ${MIN_MAX.MAX}`, () =>
   }
 })
 
-test(`Return random number to be between ${FLOAT_MIN_MAX.MIN} & ${FLOAT_MIN_MAX.MAX}`, () => {
+test(`Return random float to be between ${FLOAT_MIN_MAX.MIN} & ${FLOAT_MIN_MAX.MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ min: FLOAT_MIN_MAX.MIN, max: FLOAT_MIN_MAX.MAX })
     expect(value).toBeGreaterThanOrEqual(FLOAT_MIN_MAX.MIN)
@@ -70,7 +70,7 @@ test(`Return random number to be between ${FLOAT_MIN_MAX.MIN} & ${FLOAT_MIN_MAX.
   }
 })
 
-test(`Return random number with precision of ${PRECISION}`, () => {
+test(`Return random float with precision of ${PRECISION}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ precision: PRECISION })
     expect(String(value).length).toBeLessThanOrEqual(6)
@@ -79,21 +79,21 @@ test(`Return random number with precision of ${PRECISION}`, () => {
 
 // negative values
 
-test(`Return random number to less than ${NEGATIVE_MAX}`, () => {
+test(`Return random float to less than ${NEGATIVE_MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ max: NEGATIVE_MAX })
     expect(value).toBeLessThanOrEqual(NEGATIVE_MAX)
   }
 })
 
-test(`Return random number to more than ${NEGATIVE_MIN}`, () => {
+test(`Return random float to more than ${NEGATIVE_MIN}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ min: NEGATIVE_MIN })
     expect(value).toBeGreaterThanOrEqual(NEGATIVE_MIN)
   }
 })
 
-test(`Return random number to be between ${NEGATIVE_MIN_MAX.MIN} & ${NEGATIVE_MIN_MAX.MAX}`, () => {
+test(`Return random float to be between ${NEGATIVE_MIN_MAX.MIN} & ${NEGATIVE_MIN_MAX.MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.float({ min: NEGATIVE_MIN_MAX.MIN, max: NEGATIVE_MIN_MAX.MAX })
     expect(value).toBeGreaterThanOrEqual(NEGATIVE_MIN_MAX.MIN)
