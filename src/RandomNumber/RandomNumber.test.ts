@@ -30,6 +30,8 @@ const NEGATIVE_MIN_MAX = {
   MAX: -10,
 }
 
+const PRECISION = 4
+
 test(`Return random number between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
   const float = RandomNumber.float()
   for (let i = 0; i < ITERATIONS; i++) {
@@ -65,6 +67,13 @@ test(`Return random number to be between ${FLOAT_MIN_MAX.MIN} & ${FLOAT_MIN_MAX.
     const value = RandomNumber.float({ min: FLOAT_MIN_MAX.MIN, max: FLOAT_MIN_MAX.MAX })
     expect(value).toBeGreaterThanOrEqual(FLOAT_MIN_MAX.MIN)
     expect(value).toBeLessThanOrEqual(FLOAT_MIN_MAX.MAX)
+  }
+})
+
+test(`Return random number with precision of ${PRECISION}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomNumber.float({ precision: PRECISION })
+    expect(String(value).length).toBeLessThanOrEqual(6)
   }
 })
 
@@ -107,4 +116,9 @@ test("Throw error for non numeric min", () => {
 test("Throw error for non numeric max", () => {
   // @ts-ignore
   expect(() => RandomNumber.float({ max: "10" })).toThrow()
+})
+
+test("Throw error for non numeric precision", () => {
+  // @ts-ignore
+  expect(() => RandomNumber.float({ precision: "10" })).toThrow()
 })
