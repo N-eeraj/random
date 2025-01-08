@@ -53,7 +53,7 @@ export default class RandomNumber {
     }
 
     return this.float({
-      min: min ? Math.floor(min) : Math.ceil(max ?? 100) - 100,
+      min: (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : Math.ceil(max ?? 100) - 100,
       max: Math.ceil(max ?? 100),
       precision: 0,
     })

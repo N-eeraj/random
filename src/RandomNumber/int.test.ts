@@ -33,17 +33,19 @@ test(`Return random integer between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
   }
 })
 
-test(`Return random integer less than ${ONLY_MAX}`, () => {
+test(`Return random integer less than ${ONLY_MAX}, but less greater than ${DEFAULT.MIN}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const onlyMax = RandomNumber.int({ max: ONLY_MAX })
     expect(onlyMax).toBeLessThanOrEqual(ONLY_MAX)
+    expect(onlyMax).toBeGreaterThanOrEqual(DEFAULT.MIN)
   }
 })
 
-test(`Return random integer more than ${ONLY_MIN}`, () => {
+test(`Return random integer more than ${ONLY_MIN}, but less than ${DEFAULT.MAX}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const onlyMin = RandomNumber.int({ min: ONLY_MIN })
     expect(onlyMin).toBeGreaterThanOrEqual(ONLY_MIN)
+    expect(onlyMin).toBeLessThanOrEqual(DEFAULT.MAX)
   }
 })
 
