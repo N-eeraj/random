@@ -16,6 +16,7 @@ export default defineConfig({
         "**/*.d.ts",
         "**/*.test.ts",
         "src/dev.ts",
+        "src/utils/**/*.ts",
       ],
     },
   },
