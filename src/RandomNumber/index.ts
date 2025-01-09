@@ -3,7 +3,8 @@ import {
   checkIsNumeric,
 } from "../utils/argsValidations"
 
-import {
+import type {
+  MinMax,
   IntArgs,
   FloatArgs,
   IntArrayArgs,
@@ -14,7 +15,7 @@ import {
 
 export default class RandomNumber {
   /* v8 ignore start */
-  static #getIntMinMax({ min, max }: IntArgs) {
+  static #getIntMinMax({ min, max }: IntArgs): MinMax {
     // args validation
     checkIsNumeric("min", min)
     checkIsNumeric("max", max)
@@ -26,7 +27,7 @@ export default class RandomNumber {
   }
   /* v8 ignore stop */
 
-  static float({ min, max, precision }: FloatArgs = {}) {
+  static float({ min, max, precision }: FloatArgs = {}): number {
     // args validation
     checkIsNumeric("min", min)
     checkIsNumeric("max", max)
@@ -51,7 +52,7 @@ export default class RandomNumber {
     return value
   }
 
-  static int({ min, max }: IntArgs = {}) {
+  static int({ min, max }: IntArgs = {}): number {
     const {
       min: safeMin,
       max: safeMax,
@@ -64,7 +65,7 @@ export default class RandomNumber {
     })
   }
 
-  static floatArray({ min, max, precision, length }: FloatArrayArgs = {}) {
+  static floatArray({ min, max, precision, length }: FloatArrayArgs = {}): number[] {
     // args validation
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
@@ -73,7 +74,7 @@ export default class RandomNumber {
       .map(() => this.float({ min, max, precision }))
   }
 
-  static intArray({ min, max, length }: IntArrayArgs = {}) {
+  static intArray({ min, max, length }: IntArrayArgs = {}): number[] {
     // args validation
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)

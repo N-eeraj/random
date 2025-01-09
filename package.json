@@ -1,7 +1,7 @@
 {
   "name": "@n-eeraj/random",
-  "version": "1.0.0",
-  "description": "A JavaScript/TypeScript library for generating random values.",
+  "version": "1.0.11",
+  "description": "This Random package is a simple and flexible utility for generating random values in JavaScript and TypeScript. You can generate random integers, floating-point numbers, and arrays with ease, with full control over the ranges and precision.",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -12,6 +12,7 @@
   "keywords": [
     "random",
     "random js",
+    "random generator",
     "shuffle"
   ],
   "author": "N-eeraj",

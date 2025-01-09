@@ -1,7 +1,9 @@
-export interface IntArgs {
-  max?: number
-  min?: number
+export interface MinMax {
+  max: number
+  min: number
 }
+
+export interface IntArgs extends Partial<MinMax> {}
 
 export interface FloatArgs extends IntArgs {
   precision?: number
