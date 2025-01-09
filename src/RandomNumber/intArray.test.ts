@@ -11,7 +11,7 @@ const DEFAULT = {
   LENGTH: 1,
 }
 const ONLY_MAX = 5
-const ONLY_MIN = 5
+const ONLY_MIN = 100
 const ONLY_LENGTH = 5
 
 const MIN_MAX = {
@@ -71,13 +71,13 @@ test(`Return random integer array of length ${DEFAULT.LENGTH} with each value le
   }
 })
 
-test(`Return random integer array of length ${DEFAULT.LENGTH} with each value more than ${ONLY_MIN}, but less than ${DEFAULT.MAX}`, () => {
+test(`Return random integer array of length ${DEFAULT.LENGTH} with each value more than ${ONLY_MIN}, but less than ${ONLY_MIN + 100}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const values = RandomNumber.intArray({ min: ONLY_MIN })
     expect(values.length).toBe(DEFAULT.LENGTH)
     values.forEach((value) => {
       expect(value).toBeGreaterThanOrEqual(ONLY_MIN)
-      expect(value).toBeLessThanOrEqual(DEFAULT.MAX)
+      expect(value).toBeLessThanOrEqual(ONLY_MIN + 100)
     })
   }
 })
@@ -104,13 +104,13 @@ test(`Return random integer array of length ${DEFAULT.LENGTH} with each value to
   }
 })
 
-test(`Return random integer array of length ${MIN_LENGTH.LENGTH} with each value more than ${MIN_LENGTH.MIN}, but less than ${DEFAULT.MAX}`, () => {
+test(`Return random integer array of length ${MIN_LENGTH.LENGTH} with each value more than ${MIN_LENGTH.MIN}, but less than ${MIN_LENGTH.MIN + 100}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const values = RandomNumber.intArray({ min: MIN_LENGTH.MIN, length: MIN_LENGTH.LENGTH })
     expect(values.length).toBe(MIN_LENGTH.LENGTH)
     values.forEach((value) => {
       expect(value).toBeGreaterThanOrEqual(MIN_LENGTH.MIN)
-      expect(value).toBeLessThanOrEqual(DEFAULT.MAX)
+      expect(value).toBeLessThanOrEqual(MIN_LENGTH.MIN + 100)
     })
   }
 })

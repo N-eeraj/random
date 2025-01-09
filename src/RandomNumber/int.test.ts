@@ -10,7 +10,7 @@ const DEFAULT = {
   MAX: 100,
 }
 const ONLY_MAX = 10
-const ONLY_MIN = 50
+const ONLY_MIN = 100
 
 const MIN_MAX = {
   MIN: 40,
@@ -41,11 +41,11 @@ test(`Return random integer less than ${ONLY_MAX}, but less greater than ${DEFAU
   }
 })
 
-test(`Return random integer more than ${ONLY_MIN}, but less than ${DEFAULT.MAX}`, () => {
+test(`Return random integer more than ${ONLY_MIN}, but less than ${ONLY_MIN + 100}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomNumber.int({ min: ONLY_MIN })
     expect(value).toBeGreaterThanOrEqual(ONLY_MIN)
-    expect(value).toBeLessThanOrEqual(DEFAULT.MAX)
+    expect(value).toBeLessThanOrEqual(ONLY_MIN + 100)
   }
 })
 

@@ -20,9 +20,12 @@ export default class RandomNumber {
     checkIsNumeric("min", min)
     checkIsNumeric("max", max)
 
+    const safeMin = (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : (Math.ceil(max ?? 100) - 100)
+    const safeMax = (min && max === undefined) ? min + 100 : Math.ceil(max ?? 100)
+
     return {
-      min: (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : (Math.ceil(max ?? 100) - 100),
-      max: Math.ceil(max ?? 100),
+      min: safeMin,
+      max: safeMax,
     }
   }
   /* v8 ignore stop */
