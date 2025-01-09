@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES6",               // Compile to ES6 JavaScript
     "module": "commonjs",           // CommonJS module system (ideal for Node.js)
-    "outDir": ".",             // Output compiled JS files to the 'dist' folder
+    "outDir": "./dist",             // Output compiled JS files to the 'dist' folder
     "rootDir": "./src",             // Source files are in the 'src' folder
     "strict": true,                 // Enable strict type-checking options
     "esModuleInterop": true,        // Enable interoperability between CommonJS and ES Modules

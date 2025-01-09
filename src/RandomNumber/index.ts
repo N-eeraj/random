@@ -3,24 +3,27 @@ import {
   checkIsNumeric,
 } from "../utils/argsValidations"
 
-interface IntArgs {
-  max?: number
-  min?: number
-}
+import {
+  IntArgs,
+  FloatArgs,
+  IntArrayArgs,
+  FloatArrayArgs,
+} from "./types"
 
-interface FloatArgs extends IntArgs {
-  precision?: number
-}
 
-interface FloatArrayArgs extends FloatArgs {
-  length?: number
-}
-
-interface IntArrayArgs extends IntArgs {
-  length?: number
-}
 
 export default class RandomNumber {
+  static #getIntMinMax({ min, max }: IntArgs) {
+    // args validation
+    checkIsNumeric("min", min)
+    checkIsNumeric("max", max)
+
+    return {
+      min: (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : (Math.ceil(max ?? 100) - 100),
+      max: Math.ceil(max ?? 100),
+    }
+  }
+
   static float({ min, max, precision }: FloatArgs = {}) {
     // args validation
     checkIsNumeric("min", min)
@@ -47,22 +50,20 @@ export default class RandomNumber {
   }
 
   static int({ min, max }: IntArgs = {}) {
-    // args validation
-    checkIsNumeric("min", min)
-    checkIsNumeric("max", max)
+    const {
+      min: safeMin,
+      max: safeMax,
+    } = this.#getIntMinMax({ min, max })
 
     return this.float({
-      min: (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : Math.ceil(max ?? 100) - 100,
-      max: Math.ceil(max ?? 100),
+      min: safeMin,
+      max: safeMax,
       precision: 0,
     })
   }
 
   static floatArray({ min, max, precision, length }: FloatArrayArgs = {}) {
     // args validation
-    checkIsNumeric("min", min)
-    checkIsNumeric("max", max)
-    checkIsNumeric("precision", precision)
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
 
@@ -72,15 +73,18 @@ export default class RandomNumber {
 
   static intArray({ min, max, length }: IntArrayArgs = {}) {
     // args validation
-    checkIsNumeric("min", min)
-    checkIsNumeric("max", max)
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
 
+    const {
+      min: safeMin,
+      max: safeMax,
+    } = this.#getIntMinMax({ min, max })
+
     return Array.from({ length: length ?? 1 })
       .map(() => this.int({
-        min: min ? Math.floor(min) : Math.ceil(max ?? 100) - 100,
-        max: Math.ceil(max ?? 100),
+        min: safeMin,
+        max: safeMax,
       }))
   }
 }

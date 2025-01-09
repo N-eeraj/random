@@ -5,4 +5,4 @@ coverage
 src/dev.ts
 
 # build files
-RandomNumber
+dist
