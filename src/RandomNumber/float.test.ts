@@ -33,26 +33,26 @@ const NEGATIVE_MIN_MAX = {
 const PRECISION = 4
 
 test(`Return random float between ${DEFAULT.MIN} & ${DEFAULT.MAX}`, () => {
-  const float = RandomNumber.float()
   for (let i = 0; i < ITERATIONS; i++) {
-    expect(float).toBeGreaterThanOrEqual(DEFAULT.MIN)
-    expect(float).toBeLessThanOrEqual(DEFAULT.MAX)
+    const value = RandomNumber.float()
+    expect(value).toBeGreaterThanOrEqual(DEFAULT.MIN)
+    expect(value).toBeLessThanOrEqual(DEFAULT.MAX)
   }
 })
 
 test(`Return random float less than ${ONLY_MAX}, but less greater than ${DEFAULT.MIN}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
-    const onlyMax = RandomNumber.float({ max: ONLY_MAX })
-    expect(onlyMax).toBeLessThanOrEqual(ONLY_MAX)
-    expect(onlyMax).toBeGreaterThanOrEqual(DEFAULT.MIN)
+    const value = RandomNumber.float({ max: ONLY_MAX })
+    expect(value).toBeLessThanOrEqual(ONLY_MAX)
+    expect(value).toBeGreaterThanOrEqual(DEFAULT.MIN)
   }
 })
 
 test(`Return random float more than ${ONLY_MIN}, but less than ${ONLY_MIN + 1}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
-    const onlyMin = RandomNumber.float({ min: ONLY_MIN })
-    expect(onlyMin).toBeGreaterThanOrEqual(ONLY_MIN)
-    expect(onlyMin).toBeLessThanOrEqual(ONLY_MIN + 1)
+    const value = RandomNumber.float({ min: ONLY_MIN })
+    expect(value).toBeGreaterThanOrEqual(ONLY_MIN)
+    expect(value).toBeLessThanOrEqual(ONLY_MIN + 1)
   }
 })
 
