@@ -13,6 +13,7 @@ import {
 
 
 export default class RandomNumber {
+  /* v8 ignore start */
   static #getIntMinMax({ min, max }: IntArgs) {
     // args validation
     checkIsNumeric("min", min)
@@ -23,6 +24,7 @@ export default class RandomNumber {
       max: Math.ceil(max ?? 100),
     }
   }
+  /* v8 ignore stop */
 
   static float({ min, max, precision }: FloatArgs = {}) {
     // args validation

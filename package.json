@@ -1,23 +1,28 @@
 {
   "name": "@n-eeraj/random",
-  "version": "0.0.14",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "A JavaScript/TypeScript library for generating random values.",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/dev.ts",
     "test": "npx vitest run --coverage",
-    "test-publish": "sh publish.sh",
-    "publish-package-beta": "tsc && npm publish --access public --tag beta",
-    "publish-package": "tsc && npm publish --access public"
+    "test-publish": "sh publish.sh"
   },
-  "keywords": [],
+  "keywords": [
+    "random",
+    "random js",
+    "shuffle"
+  ],
   "author": "N-eeraj",
   "license": "ISC",
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.8",
     "ts-node-dev": "^2.0.0",
     "vitest": "^2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/N-eeraj/random"
   }
 }
