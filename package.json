@@ -1,10 +1,10 @@
 {
   "name": "@n-eeraj/random",
-  "version": "1.0.11",
+  "version": "1.0.111",
   "description": "This Random package is a simple and flexible utility for generating random values in JavaScript and TypeScript. You can generate random integers, floating-point numbers, and arrays with ease, with full control over the ranges and precision.",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "minify": "sh minify.sh",
+    "build": "tsc && npm run minify",
     "dev": "ts-node-dev src/dev.ts",
     "test": "npx vitest run --coverage",
     "test-publish": "sh publish.sh"
@@ -19,6 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.8",
+    "terser": "^5.37.0",
     "ts-node-dev": "^2.0.0",
     "vitest": "^2.1.8"
   },
