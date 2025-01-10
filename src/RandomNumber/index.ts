@@ -20,6 +20,10 @@ export default class RandomNumber {
     checkIsNumeric("min", min)
     checkIsNumeric("max", max)
 
+    if (min !== undefined && max !== undefined && min === max) {
+      return { min, max }
+    }
+
     const safeMin = (min || Math.ceil(max ?? 100) > 0) ? Math.floor(min ?? 0) : (Math.ceil(max ?? 100) - 100)
     const safeMax = (min && max === undefined) ? min + 100 : Math.ceil(max ?? 100)
 
@@ -30,13 +34,20 @@ export default class RandomNumber {
   }
   /* v8 ignore stop */
 
-  static float({ min, max, precision }: FloatArgs = {}): number {
+  static float({ min, max, precision, skipWarning }: FloatArgs & { skipWarning?: boolean } = { skipWarning: false }): number {
     // args validation
     checkIsNumeric("min", min)
     checkIsNumeric("max", max)
     checkIsNumeric("precision", precision)
-    if (min !== undefined && max !== undefined && min >= max) {
-      throw new Error(`min should be lesser than max, received min: ${min} & max: ${max}`)
+    if (min !== undefined && max !== undefined) {
+      if (min > max) {
+        throw new Error(`min should be lesser than max, received min: ${min} & max: ${max}`)
+      } else if (min === max) {
+        if (!skipWarning) {
+          console.warn(`Warning: min and max are equal. Returning the value ${min}.`)
+        }
+        return min
+      }
     }
 
     let value = Math.random()
@@ -55,7 +66,7 @@ export default class RandomNumber {
     return value
   }
 
-  static int({ min, max }: IntArgs = {}): number {
+  static int({ min, max, skipWarning }: IntArgs & { skipWarning?: boolean } = { skipWarning: false }): number {
     const {
       min: safeMin,
       max: safeMax,
@@ -65,19 +76,25 @@ export default class RandomNumber {
       min: safeMin,
       max: safeMax,
       precision: 0,
+      skipWarning,
     })
   }
 
-  static floatArray({ min, max, precision, length }: FloatArrayArgs = {}): number[] {
+  static floatArray({ min, max, precision, length, skipWarning }: FloatArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
     // args validation
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
 
     return Array.from({ length: length ?? 1 })
-      .map(() => this.float({ min, max, precision }))
+      .map((_, index) => this.float({
+        min,
+        max,
+        precision,
+        skipWarning: skipWarning || !!index,
+      }))
   }
 
-  static intArray({ min, max, length }: IntArrayArgs = {}): number[] {
+  static intArray({ min, max, length, skipWarning }: IntArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
     // args validation
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
@@ -88,9 +105,10 @@ export default class RandomNumber {
     } = this.#getIntMinMax({ min, max })
 
     return Array.from({ length: length ?? 1 })
-      .map(() => this.int({
+      .map((_, index) => this.int({
         min: safeMin,
         max: safeMax,
+        skipWarning: skipWarning || !!index,
       }))
   }
 }
