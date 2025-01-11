@@ -11,6 +11,8 @@ if npm run test; then
   else
     npm publish --access public
   fi
+  cd ..
+  npm i
 else
   echo "Some test failed, aborting publish"
 fi

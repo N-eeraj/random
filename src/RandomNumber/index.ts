@@ -72,12 +72,11 @@ export default class RandomNumber {
       max: safeMax,
     } = this.#getIntMinMax({ min, max })
 
-    return this.float({
+    return Math.round(this.float({
       min: safeMin,
       max: safeMax,
-      precision: 0,
       skipWarning,
-    })
+    }))
   }
 
   static floatArray({ min, max, precision, length, skipWarning }: FloatArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
@@ -85,13 +84,20 @@ export default class RandomNumber {
     checkIsNumeric("length", length)
     checkMinValue("length", length, 0)
 
-    return Array.from({ length: length ?? 1 })
-      .map((_, index) => this.float({
-        min,
-        max,
-        precision,
-        skipWarning: skipWarning || !!index,
-      }))
+    const array = []
+
+    for (let index = 0; index < (length ?? 1); index++) {
+      array.push(
+        this.float({
+          min,
+          max,
+          precision,
+          skipWarning: skipWarning || !!index,
+        })
+      )
+    }
+
+    return array
   }
 
   static intArray({ min, max, length, skipWarning }: IntArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
@@ -104,11 +110,19 @@ export default class RandomNumber {
       max: safeMax,
     } = this.#getIntMinMax({ min, max })
 
-    return Array.from({ length: length ?? 1 })
-      .map((_, index) => this.int({
-        min: safeMin,
-        max: safeMax,
-        skipWarning: skipWarning || !!index,
-      }))
+
+    const array = []
+
+    for (let index = 0; index < (length ?? 1); index++) {
+      array.push(
+        this.int({
+          min: safeMin,
+          max: safeMax,
+          skipWarning: skipWarning || !!index,
+        })
+      )
+    }
+
+    return array
   }
 }
