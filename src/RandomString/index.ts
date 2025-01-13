@@ -25,4 +25,26 @@ export default class RandomString {
 
     return letters
   }
+
+  static alphaNum({ strLen } = { strLen: 1 }): string {
+    checkIsNumeric("strLen", strLen)
+    checkMinValue("strLen", strLen, 0)
+
+    let str = ""
+    while (str.length !== strLen) {
+      switch(RandomNumber.int({ max: 2 })) {
+        case 0:
+          str += RandomNumber.int({ max: 9 })
+          continue
+        case 1:
+          str += String.fromCharCode(RandomNumber.int({ min: 65, max: 90 }))
+          continue
+        case 2:
+          str += String.fromCharCode(RandomNumber.int({ min: 97, max: 122 }))
+          continue
+      }
+    }
+
+    return str
+  }
 }
