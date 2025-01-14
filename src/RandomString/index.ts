@@ -47,4 +47,39 @@ export default class RandomString {
 
     return str
   }
+
+  static from(from: string, strLen = from.length, options?: Partial<Record<"lower" | "upper" | "number", boolean>>): string {
+    if (typeof from !== "string") {
+      throw new Error(`from must be a string, received ${from} of type ${typeof from}`)
+    }
+    checkIsNumeric("strLen", strLen)
+    checkMinValue("strLen", strLen, 0)
+    if (options !== undefined && typeof options !== "object") {
+      throw new Error(`options must be a object, received ${options} of type ${typeof options}`)
+    }
+
+    let str = ""
+    let source = from
+
+    if (options) {
+      if (options.lower) {
+        source += 'abcdefghijklmnopqrstuvwxyz'
+      }
+      if (options.upper) {
+        source += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      }
+      if (options.number) {
+        source += '0123456789'
+      }
+    }
+
+    source = [...new Set(source)].join('')
+
+
+    while (str.length !== strLen) {
+      str += source[RandomNumber.int({ max: source.length - 1 })]
+    }
+
+    return str
+  }
 }

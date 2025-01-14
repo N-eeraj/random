@@ -10,14 +10,14 @@ export const STRING_NUMBERS = Array.from({ length: 10 }).map((_, i) => String(i)
 export const ALPHA_NUM = [...LETTERS, ...STRING_NUMBERS]
 const LENGTH = 10
 
-test(`Returns an alphanumeric character`, () => {
+test(`Return an alphanumeric character`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.alphaNum()
     expect(ALPHA_NUM).toContain(value)
   }
 })
 
-test(`Returns an alphanumeric string of length ${LENGTH}`, () => {
+test(`Return an alphanumeric string of length ${LENGTH}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.alphaNum()
     value.split("")
@@ -25,7 +25,7 @@ test(`Returns an alphanumeric string of length ${LENGTH}`, () => {
   }
 })
 
-test(`Returns an empty string`, () => {
+test(`Return an empty string`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.alphaNum({ strLen: 0 })
     expect(value).toBe("")
