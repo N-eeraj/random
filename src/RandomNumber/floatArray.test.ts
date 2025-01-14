@@ -3,7 +3,7 @@ import {
   test,
   expect,
 } from "vitest"
-import RandomNumber from "./index"
+import RandomNumber from "."
 
 const ITERATIONS = 1_000
 const DEFAULT = {
