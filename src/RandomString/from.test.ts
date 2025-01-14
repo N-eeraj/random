@@ -156,31 +156,112 @@ test(`Return a string from ${SOURCE_STRING.UPPER_NUM} of length ${LENGTH}`, () =
 })
 
 
-// empty string with only lower option
+// empty string with options
 
+test(`Return a string of lower case of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      lower: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect(LOWER_CASE).toContain(letter))
+  }
+})
 
-// empty string with only upper option
+test(`Return a string of upper case of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      upper: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect(UPPER_CASE).toContain(letter))
+  }
+})
 
+test(`Return a string of numbers of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      number: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect(STRING_NUMBERS).toContain(letter))
+  }
+})
 
-// empty string with only number option
+test(`Return a string of letters of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      lower: true,
+      upper: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect(LETTERS).toContain(letter))
+  }
+})
 
+test(`Return a string of alpha numeric characters of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      lower: true,
+      upper: true,
+      number: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect(ALPHA_NUM).toContain(letter))
+  }
+})
 
-// empty string with lower and upper options
+test(`Return a string of lower case letters & numbers of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      lower: true,
+      number: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect([...LOWER_CASE, ...STRING_NUMBERS]).toContain(letter))
+  }
+})
 
-
-// empty string with lower, upper and number options
-
-
-// empty string with lower and number options
-
-
-// empty string with upper and upper options
+test(`Return a string of upper case letters & numbers of length ${LENGTH}`, () => {
+  for (let i = 0; i < ITERATIONS; i++) {
+    const value = RandomString.from("", LENGTH, {
+      upper: true,
+      number: true,
+    })
+    expect(value.length).toBe(LENGTH)
+    value.split("")
+      .forEach(letter => expect([...UPPER_CASE, ...STRING_NUMBERS]).toContain(letter))
+  }
+})
 
 
 // error cases
 
-// invalid from type
-// invalid strLen type
-// strLen < 0
-// invalid options type
-// empty source string
+test("Throw error for non string from", () => {
+  // @ts-ignore
+  expect(() => RandomString.from(undefined)).toThrow()
+})
+
+test("Throw error for non numeric string length", () => {
+  // @ts-ignore
+  expect(() => RandomString.from(SOURCE_STRING.LETTERS, "10")).toThrow()
+})
+
+test("Throw error for negative string length value", () => {
+  expect(() => RandomString.from(SOURCE_STRING.LETTERS, -5)).toThrow()
+})
+
+test("Throw error for non object options", () => {
+  // @ts-ignore
+  expect(() => RandomString.from(SOURCE_STRING.LETTERS, LENGTH, "")).toThrow()
+})
+
+test("Throw error for empty source string", () => {
+  expect(() => RandomString.from("", LENGTH)).toThrow()
+})
