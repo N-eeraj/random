@@ -2,7 +2,7 @@ import {
   test,
   expect,
 } from "vitest"
-import RandomString from "./index"
+import RandomString from "."
 
 const ITERATIONS = 1_000
 export const UPPER_CASE = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]

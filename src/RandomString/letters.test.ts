@@ -2,7 +2,7 @@ import {
   test,
   expect,
 } from "vitest"
-import RandomString from "./index"
+import RandomString from "."
 import { LOWER_CASE } from "./lowerCase.test"
 import { UPPER_CASE } from "./upperCase.test"
 

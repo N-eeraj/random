@@ -2,7 +2,7 @@ import {
   test,
   expect,
 } from "vitest"
-import RandomString from "./index"
+import RandomString from "."
 import { LETTERS } from "./letters.test"
 
 const ITERATIONS = 1_000

@@ -1,6 +1,6 @@
-export function checkIsNumeric(key: string, arg?: number) {
-  if (arg !== undefined && typeof arg !== "number") {
-    throw new Error(`${key} must be a number, received ${arg} of type ${typeof arg}`)
+export function checkIsOfType(key: string, expectedType: string, arg?: unknown) {
+  if (arg !== undefined && typeof arg !== expectedType) {
+    throw new Error(`${key} must be a expectedType, received ${arg} of type ${typeof arg}`)
   }
 }
 

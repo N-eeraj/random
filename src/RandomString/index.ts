@@ -2,7 +2,7 @@ import { randomBoolean } from ".."
 import RandomNumber from "../RandomNumber"
 import {
   checkMinValue,
-  checkIsNumeric,
+  checkIsOfType,
 } from "../utils/argsValidations"
 
 export default class RandomString {
@@ -15,7 +15,7 @@ export default class RandomString {
   }
 
   static letters({ strLen } = { strLen: 1 }): string {
-    checkIsNumeric("strLen", strLen)
+    checkIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
     let letters = ""
@@ -27,7 +27,7 @@ export default class RandomString {
   }
 
   static alphaNum({ strLen } = { strLen: 1 }): string {
-    checkIsNumeric("strLen", strLen)
+    checkIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
     let str = ""
@@ -49,14 +49,10 @@ export default class RandomString {
   }
 
   static from(from: string, strLen = from.length, options?: Partial<Record<"lower" | "upper" | "number", boolean>>): string {
-    if (typeof from !== "string") {
-      throw new Error(`from must be a string, received ${from} of type ${typeof from}`)
-    }
-    checkIsNumeric("strLen", strLen)
+    checkIsOfType("from", "string", from)
+    checkIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
-    if (options !== undefined && typeof options !== "object") {
-      throw new Error(`options must be a object, received ${options} of type ${typeof options}`)
-    }
+    checkIsOfType("options", "object", options)
 
     let str = ""
     let source = from
@@ -75,9 +71,18 @@ export default class RandomString {
 
     source = [...new Set(source)].join('')
 
-
+    try {
+      checkMinValue("source string", source.length, 1)
+    } catch {
+      throw new Error(`Empty source string: pass a valid "from" of at least length 1 or enable any of the "options" (lower, upper, number) as true`)
+    }
+  
     while (str.length !== strLen) {
-      str += source[RandomNumber.int({ max: source.length - 1 })]
+      str += source[RandomNumber.int({
+        min: 0,
+        max: source.length - 1,
+        skipWarning: true,
+      })]
     }
 
     return str

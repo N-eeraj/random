@@ -5,7 +5,7 @@ import {
 import {
   randomUUID,
   randomUUIDArray,
-} from "./index"
+} from "."
 
 const ITERATIONS = 1_000
 const LENGTH = 100

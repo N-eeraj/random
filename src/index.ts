@@ -1,6 +1,6 @@
 import {
   checkMinValue,
-  checkIsNumeric,
+  checkIsOfType,
 } from "./utils/argsValidations"
 
 export function randomBoolean(): boolean {
@@ -8,7 +8,7 @@ export function randomBoolean(): boolean {
 }
 
 export function randomBooleanArray({ length } = { length: 1 }): boolean[] {
-  checkIsNumeric("length", length)
+  checkIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 
   const array = []
@@ -25,7 +25,7 @@ export function randomUUID(): string {
 }
 
 export function randomUUIDArray({ length } = { length: 1 }): string[] {
-  checkIsNumeric("length", length)
+  checkIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 
   const array = []
