@@ -8,14 +8,14 @@ const ITERATIONS = 1_000
 export const UPPER_CASE = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 const LENGTH = 10
 
-test(`Returns a letter in upper case from A-Z`, () => {
+test(`Return a letter in upper case from A-Z`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.upperCase()
     expect(UPPER_CASE).toContain(value)
   }
 })
 
-test(`Returns a string of length ${LENGTH} in upper case from A-Z`, () => {
+test(`Return a string of length ${LENGTH} in upper case from A-Z`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.upperCase()
     value.split("")
@@ -23,7 +23,7 @@ test(`Returns a string of length ${LENGTH} in upper case from A-Z`, () => {
   }
 })
 
-test(`Returns an empty string`, () => {
+test(`Return an empty string`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.upperCase({ strLen: 0 })
     expect(value).toBe("")

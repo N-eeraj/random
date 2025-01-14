@@ -10,13 +10,13 @@ import {
 const ITERATIONS = 1_000
 const LENGTH = 100
 
-test(`Returns a boolean value`, () => {
+test(`Return a boolean value`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     expect(randomBoolean()).toBeTypeOf("boolean")
   }
 })
 
-test(`Returns a boolean array of length ${LENGTH}`, () => {
+test(`Return a boolean array of length ${LENGTH}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const values = randomBooleanArray({ length: LENGTH })
     values.forEach(value => expect(value).toBeTypeOf("boolean"))

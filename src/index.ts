@@ -19,3 +19,20 @@ export function randomBooleanArray({ length } = { length: 1 }): boolean[] {
 
   return array
 }
+
+export function randomUUID(): string {
+  return crypto.randomUUID()
+}
+
+export function randomUUIDArray({ length } = { length: 1 }): string[] {
+  checkIsNumeric("length", length)
+  checkMinValue("length", length, 0)
+
+  const array = []
+
+  for (let index = 0; index < length; index++) {
+    array.push(randomUUID())
+  }
+
+  return array
+}

@@ -10,14 +10,14 @@ const ITERATIONS = 1_000
 export const LETTERS = [...LOWER_CASE, ...UPPER_CASE]
 const LENGTH = 10
 
-test(`Returns a letter in from a-z or A-Z`, () => {
+test(`Return a letter in from a-z or A-Z`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.letters()
     expect(LETTERS).toContain(value)
   }
 })
 
-test(`Returns a string of length ${LENGTH} in from a-z or A-Z`, () => {
+test(`Return a string of length ${LENGTH} in from a-z or A-Z`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.letters()
     value.split("")
@@ -25,7 +25,7 @@ test(`Returns a string of length ${LENGTH} in from a-z or A-Z`, () => {
   }
 })
 
-test(`Returns an empty string`, () => {
+test(`Return an empty string`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
     const value = RandomString.letters({ strLen: 0 })
     expect(value).toBe("")
