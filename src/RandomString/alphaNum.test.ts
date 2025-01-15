@@ -27,7 +27,7 @@ test(`Return an alphanumeric string of length ${LENGTH}`, () => {
 
 test(`Return an empty string`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
-    const value = RandomString.alphaNum({ strLen: 0 })
+    const value = RandomString.alphaNum(0)
     expect(value).toBe("")
   }
 })
@@ -37,13 +37,13 @@ test(`Return an empty string`, () => {
 
 test("Throw error for non numeric string length", () => {
   // @ts-ignore
-  expect(() => RandomString.alphaNum({ strLen: "10" })).toThrow()
+  expect(() => RandomString.alphaNum("10")).toThrow()
 })
 
 test("Throw error for negative string length value", () => {
-  expect(() => RandomString.alphaNum({ strLen: -5 })).toThrow()
+  expect(() => RandomString.alphaNum(-5)).toThrow()
 })
 
 test("Throw error for infinite string length value", () => {
-  expect(() => RandomString.alphaNum({ strLen: Infinity })).toThrow()
+  expect(() => RandomString.alphaNum(Infinity)).toThrow()
 })

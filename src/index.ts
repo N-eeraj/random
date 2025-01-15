@@ -7,7 +7,7 @@ export function randomBoolean(): boolean {
   return Math.random() > 0.5
 }
 
-export function randomBooleanArray({ length } = { length: 1 }): boolean[] {
+export function randomBooleanArray(length = 1): boolean[] {
   checkIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 
@@ -24,7 +24,7 @@ export function randomUUID(): string {
   return crypto.randomUUID()
 }
 
-export function randomUUIDArray({ length } = { length: 1 }): string[] {
+export function randomUUIDArray(length = 1): string[] {
   checkIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 

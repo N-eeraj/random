@@ -18,7 +18,7 @@ test(`Return a boolean value`, () => {
 
 test(`Return a boolean array of length ${LENGTH}`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
-    const values = randomBooleanArray({ length: LENGTH })
+    const values = randomBooleanArray(LENGTH)
     values.forEach(value => expect(value).toBeTypeOf("boolean"))
     expect(values.length).toBe(LENGTH)
   }
@@ -28,13 +28,13 @@ test(`Return a boolean array of length ${LENGTH}`, () => {
 
 test("Throw error for non numeric string length", () => {
   // @ts-ignore
-  expect(() => randomBooleanArray({ length: "10" })).toThrow()
+  expect(() => randomBooleanArray("10")).toThrow()
 })
 
 test("Throw error for negative string length value", () => {
-  expect(() => randomBooleanArray({ length: -5 })).toThrow()
+  expect(() => randomBooleanArray(-5)).toThrow()
 })
 
 test("Throw error for infinite string length value", () => {
-  expect(() => randomBooleanArray({ length: Infinity })).toThrow()
+  expect(() => randomBooleanArray(Infinity)).toThrow()
 })

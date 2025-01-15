@@ -25,7 +25,7 @@ test(`Return a string of length ${LENGTH} in lower case from a-z`, () => {
 
 test(`Return an empty string`, () => {
   for (let i = 0; i < ITERATIONS; i++) {
-    const value = RandomString.lowerCase({ strLen: 0 })
+    const value = RandomString.lowerCase(0)
     expect(value).toBe("")
   }
 })
@@ -35,13 +35,13 @@ test(`Return an empty string`, () => {
 
 test("Throw error for non numeric string length", () => {
   // @ts-ignore
-  expect(() => RandomString.lowerCase({ strLen: "10" })).toThrow()
+  expect(() => RandomString.lowerCase("10")).toThrow()
 })
 
 test("Throw error for negative string length value", () => {
-  expect(() => RandomString.lowerCase({ strLen: -5 })).toThrow()
+  expect(() => RandomString.lowerCase(-5)).toThrow()
 })
 
 test("Throw error for infinite string length value", () => {
-  expect(() => RandomString.lowerCase({ strLen: Infinity })).toThrow()
+  expect(() => RandomString.lowerCase(Infinity)).toThrow()
 })
