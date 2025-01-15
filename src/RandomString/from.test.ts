@@ -257,6 +257,10 @@ test("Throw error for negative string length value", () => {
   expect(() => RandomString.from(SOURCE_STRING.LETTERS, -5)).toThrow()
 })
 
+test("Throw error for infinite string length value", () => {
+  expect(() => RandomString.from(SOURCE_STRING.LETTERS, Infinity)).toThrow()
+})
+
 test("Throw error for non object options", () => {
   // @ts-ignore
   expect(() => RandomString.from(SOURCE_STRING.LETTERS, LENGTH, "")).toThrow()

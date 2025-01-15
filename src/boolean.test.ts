@@ -34,3 +34,7 @@ test("Throw error for non numeric string length", () => {
 test("Throw error for negative string length value", () => {
   expect(() => randomBooleanArray({ length: -5 })).toThrow()
 })
+
+test("Throw error for infinite string length value", () => {
+  expect(() => randomBooleanArray({ length: Infinity })).toThrow()
+})
