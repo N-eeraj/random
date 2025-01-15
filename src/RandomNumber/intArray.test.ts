@@ -410,3 +410,7 @@ test("Throw error for non numeric length", () => {
 test("Throw error for negative length value", () => {
   expect(() => RandomNumber.intArray({ length: -5 })).toThrow()
 })
+
+test("Throw error for infinite length value", () => {
+  expect(() => RandomNumber.intArray({ length: Infinity })).toThrow()
+})

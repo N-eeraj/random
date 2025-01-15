@@ -44,3 +44,6 @@ test("Throw error for negative string length value", () => {
   expect(() => RandomString.alphaNum({ strLen: -5 })).toThrow()
 })
 
+test("Throw error for infinite string length value", () => {
+  expect(() => RandomString.alphaNum({ strLen: Infinity })).toThrow()
+})

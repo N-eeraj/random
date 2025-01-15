@@ -42,3 +42,6 @@ test("Throw error for negative string length value", () => {
   expect(() => RandomString.lowerCase({ strLen: -5 })).toThrow()
 })
 
+test("Throw error for infinite string length value", () => {
+  expect(() => RandomString.lowerCase({ strLen: Infinity })).toThrow()
+})
