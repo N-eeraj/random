@@ -6,15 +6,15 @@ import {
 } from "../utils/argsValidations"
 
 export default class RandomString {
-  static upperCase({ strLen } = { strLen: 1 }): string {
+  static upperCase(strLen = 1): string {
     return String.fromCharCode(...RandomNumber.intArray({ min: 65, max: 90, length: strLen }))
   }
 
-  static lowerCase({ strLen } = { strLen: 1 }): string {
+  static lowerCase(strLen = 1): string {
     return String.fromCharCode(...RandomNumber.intArray({ min: 97, max: 122, length: strLen }))
   }
 
-  static letters({ strLen } = { strLen: 1 }): string {
+  static letters(strLen = 1): string {
     checkIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
@@ -26,7 +26,7 @@ export default class RandomString {
     return letters
   }
 
-  static alphaNum({ strLen } = { strLen: 1 }): string {
+  static alphaNum(strLen = 1): string {
     checkIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
