@@ -5,7 +5,7 @@ The `RandomNumber` class provides four static methods to generate random numbers
 
 ### Usage
 ```ts
-import RandomNumber from '@n-eeraj/random/RandomNumber'
+import RandomNumber from "@n-eeraj/random/RandomNumber"
 ```
 
 ### Methods

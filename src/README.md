@@ -5,7 +5,7 @@ import {
   randomBooleanArray,
   randomUUID,
   randomUUIDArray,
-} from '@n-eeraj/random'
+} from "@n-eeraj/random"
 ```
 
 ### Exported Functions
@@ -48,3 +48,6 @@ Generates an of random UUID using `crypto.randomUUID()`.
 randomUUIDArray(5)
 // Returns an array of 5 random UUIDs
 ```
+<br />
+
+> Read more about [crypto.randomUUID()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID).

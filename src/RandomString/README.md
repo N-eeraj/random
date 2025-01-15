@@ -4,7 +4,7 @@ The `RandomString` class provides five static methods to generate random strings
 
 ### Usage
 ```ts
-import RandomString from '@n-eeraj/random/RandomString'
+import RandomString from "@n-eeraj/random/RandomString"
 ```
 
 ### Methods
