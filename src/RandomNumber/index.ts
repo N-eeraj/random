@@ -79,7 +79,7 @@ export default class RandomNumber {
     }))
   }
 
-  static floatArray({ min, max, precision, length, skipWarning }: FloatArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
+  static floatArray({ min, max, precision, length, skipWarning }: FloatArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): Array<number> {
     // args validation
     checkIsOfType("length", "number", length)
     checkMinValue("length", length, 0)
@@ -100,7 +100,7 @@ export default class RandomNumber {
     return array
   }
 
-  static intArray({ min, max, length, skipWarning }: IntArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): number[] {
+  static intArray({ min, max, length, skipWarning }: IntArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): Array<number> {
     // args validation
     checkIsOfType("length", "number", length)
     checkMinValue("length", length, 0)
