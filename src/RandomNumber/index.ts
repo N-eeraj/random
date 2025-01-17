@@ -1,6 +1,6 @@
 import {
   checkMinValue,
-  checkIsOfType,
+  checkOptionalIsOfType,
 } from "../utils/argsValidations"
 
 import type {
@@ -17,8 +17,8 @@ export default class RandomNumber {
   /* v8 ignore start */
   static #getIntMinMax({ min, max }: IntArgs): MinMax {
     // args validation
-    checkIsOfType("min", "number", min)
-    checkIsOfType("max", "number", max)
+    checkOptionalIsOfType("min", "number", min)
+    checkOptionalIsOfType("max", "number", max)
 
     if (min !== undefined && max !== undefined && min === max) {
       return { min, max }
@@ -36,9 +36,9 @@ export default class RandomNumber {
 
   static float({ min, max, precision, skipWarning }: FloatArgs & { skipWarning?: boolean } = { skipWarning: false }): number {
     // args validation
-    checkIsOfType("min", "number", min)
-    checkIsOfType("max", "number", max)
-    checkIsOfType("precision", "number", precision)
+    checkOptionalIsOfType("min", "number", min)
+    checkOptionalIsOfType("max", "number", max)
+    checkOptionalIsOfType("precision", "number", precision)
     if (min !== undefined && max !== undefined) {
       if (min > max) {
         throw new Error(`min should be lesser than max, received min: ${min} & max: ${max}`)
@@ -81,7 +81,7 @@ export default class RandomNumber {
 
   static floatArray({ min, max, precision, length, skipWarning }: FloatArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): Array<number> {
     // args validation
-    checkIsOfType("length", "number", length)
+    checkOptionalIsOfType("length", "number", length)
     checkMinValue("length", length, 0)
 
     const array = []
@@ -102,7 +102,7 @@ export default class RandomNumber {
 
   static intArray({ min, max, length, skipWarning }: IntArrayArgs & { skipWarning?: boolean } = { skipWarning: false }): Array<number> {
     // args validation
-    checkIsOfType("length", "number", length)
+    checkOptionalIsOfType("length", "number", length)
     checkMinValue("length", length, 0)
 
     const {

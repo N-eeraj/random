@@ -2,7 +2,7 @@ import { randomBoolean } from ".."
 import RandomNumber from "../RandomNumber"
 import {
   checkMinValue,
-  checkIsOfType,
+  checkOptionalIsOfType,
 } from "../utils/argsValidations"
 
 export default class RandomString {
@@ -15,7 +15,7 @@ export default class RandomString {
   }
 
   static letters(strLen = 1): string {
-    checkIsOfType("strLen", "number", strLen)
+    checkOptionalIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
     let letters = ""
@@ -27,7 +27,7 @@ export default class RandomString {
   }
 
   static alphaNum(strLen = 1): string {
-    checkIsOfType("strLen", "number", strLen)
+    checkOptionalIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
 
     let str = ""
@@ -49,10 +49,10 @@ export default class RandomString {
   }
 
   static from(from: string, strLen = from.length, options?: Partial<Record<"lower" | "upper" | "number", boolean>>): string {
-    checkIsOfType("from", "string", from)
-    checkIsOfType("strLen", "number", strLen)
+    checkOptionalIsOfType("from", "string", from)
+    checkOptionalIsOfType("strLen", "number", strLen)
     checkMinValue("strLen", strLen, 0)
-    checkIsOfType("options", "object", options)
+    checkOptionalIsOfType("options", "object", options)
 
     let str = ""
     let source = from

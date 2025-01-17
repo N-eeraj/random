@@ -1,6 +1,6 @@
 import {
   checkMinValue,
-  checkIsOfType,
+  checkOptionalIsOfType,
 } from "./utils/argsValidations"
 
 export function randomBoolean(): boolean {
@@ -8,7 +8,7 @@ export function randomBoolean(): boolean {
 }
 
 export function randomBooleanArray(length = 1): Array<boolean> {
-  checkIsOfType("length", "number", length)
+  checkOptionalIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 
   const array = []
@@ -25,7 +25,7 @@ export function randomUUID(): string {
 }
 
 export function randomUUIDArray(length = 1): Array<string> {
-  checkIsOfType("length", "number", length)
+  checkOptionalIsOfType("length", "number", length)
   checkMinValue("length", length, 0)
 
   const array = []
