@@ -33,12 +33,15 @@ export default class RandomString {
     let str = ""
     while (str.length !== strLen) {
       switch(RandomNumber.int({ max: 2 })) {
+        // create integer character
         case 0:
           str += RandomNumber.int({ max: 9 })
           continue
+        // create upper case character
         case 1:
           str += String.fromCharCode(RandomNumber.int({ min: 65, max: 90 }))
           continue
+        // create lower case character
         case 2:
           str += String.fromCharCode(RandomNumber.int({ min: 97, max: 122 }))
           continue
@@ -57,6 +60,7 @@ export default class RandomString {
     let str = ""
     let source = from
 
+    // update source string based on options
     if (options) {
       if (options.lower) {
         source += 'abcdefghijklmnopqrstuvwxyz'
