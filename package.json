@@ -1,6 +1,6 @@
 {
   "name": "@n-eeraj/random",
-  "version": "1.1.202",
+  "version": "1.2.101",
   "description": "This Random package is a simple and flexible utility for generating random values in JavaScript and TypeScript. You can generate numeric, string and boolean values with full control over the generation using parameters.",
   "scripts": {
     "minify": "sh minify.sh",

@@ -30,6 +30,50 @@ test(`Return shuffled list from ${MULTI_TYPE_ARRAY}`, () => {
 })
 
 
+// warning cases
+
+test(`Return ${NUMERIC_ARRAY} array as it is with 0 mix count`, () => {
+  const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const values = RandomList.shuffle(NUMERIC_ARRAY, 0)
+  values.forEach((value, index) => {
+    expect(value).toBe(NUMERIC_ARRAY[index])
+  })
+  expect(warnSpy).toHaveBeenLastCalledWith("Warning: received mix count 0, returning un-shuffled list.")
+})
+
+test(`Return ${MULTI_TYPE_ARRAY} array as it is with 0 mix count`, () => {
+  const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const values = RandomList.shuffle(MULTI_TYPE_ARRAY, 0)
+  values.forEach((value, index) => {
+    expect(value).toBe(MULTI_TYPE_ARRAY[index])
+  })
+  expect(warnSpy).toHaveBeenLastCalledWith("Warning: received mix count 0, returning un-shuffled list.")
+})
+
+test(`Return ${[SINGLE_ITEM]} array as it is with 0 mix count`, () => {
+  const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const values = RandomList.shuffle([SINGLE_ITEM], 0)
+  values.forEach((value, index) => {
+    expect(value).toBe([SINGLE_ITEM][index])
+  })
+  expect(warnSpy).toHaveBeenLastCalledWith("Warning: received mix count 0, returning un-shuffled list.")
+})
+
+test(`Return empty array with warning`, () => {
+  const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const values = RandomList.shuffle([])
+  expect(values.length).toBe(0)
+  expect(warnSpy).toHaveBeenLastCalledWith(`Warning: cannot shuffle list ${[]}, list too small, returning un-shuffled list.`)
+})
+
+test(`Return empty array with warning`, () => {
+  const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const values = RandomList.shuffle([SINGLE_ITEM])
+  expect(values.length).toBe(1)
+  expect(warnSpy).toHaveBeenLastCalledWith(`Warning: cannot shuffle list ${[SINGLE_ITEM]}, list too small, returning un-shuffled list.`)
+})
+
+
 // error cases
 
 test("Throw error if list is not provided", () => {
