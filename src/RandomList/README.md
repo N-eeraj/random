@@ -21,13 +21,12 @@ RandomList.choice(options)
 ```
 <br />
 
-`.choice(array)`
-Selects a random element from the provided array.
+`.shuffle(array, mixCount)`
+Returns a shuffled version of the provided array. Mix count is an optional argument, it dictates how much times the random swapping should take place.
 
 **Example Usage**:
 ```ts
 const array = [1, 2, "abc", { x: 5 }]
-RandomList.shuffle(array)
-// Returns an array with same elements in different order
+RandomList.shuffle(array, 3)
+// Returns an array with same elements after shuffling random indices 3 times
 ```
-<br />
