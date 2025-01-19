@@ -1,6 +1,8 @@
 import { randomBoolean } from ".."
+import RandomList from "../RandomList"
 import RandomNumber from "../RandomNumber"
 import {
+  checkIsOfType,
   checkMinValue,
   checkOptionalIsOfType,
 } from "../utils/argsValidations"
@@ -90,5 +92,32 @@ export default class RandomString {
     }
 
     return str
+  }
+
+  static shuffle(string: string, mixCount?: number): string {
+    // args validation
+    checkIsOfType("string", "string", string)
+    checkOptionalIsOfType("mixCount", "number", mixCount)
+
+    try {
+      checkMinValue("mixCount", mixCount, 1)
+    } catch (error) {
+      // handle un-shuffled 
+      if (mixCount === 0) {
+        console.warn("Warning: received mix count 0, returning un-shuffled string.")
+        return string
+      }
+      throw error
+    }
+
+    // check and handle un-shuffled 
+    try {
+      checkMinValue("string length", string.length, 2)
+    } catch {
+      console.warn(`Warning: cannot shuffle string ${string}, string too small, returning un-shuffled string.`)
+      return string
+    }
+
+    return RandomList.shuffle(string.split(""), mixCount).join("")
   }
 }
