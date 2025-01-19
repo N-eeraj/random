@@ -1,6 +1,6 @@
 # RandomString
 
-The `RandomString` class provides five static methods to generate random strings based on the provided arguments. You can use these methods to generate random lower, upper or both case letters & alphanumerics.
+The `RandomString` class provides six static methods to generate random strings based on the provided arguments. You can use these methods to generate random lower, upper or both case letters & alphanumerics.
 
 ### Usage
 ```ts
@@ -69,4 +69,14 @@ RandomString.from("abc123", 12, {
   number: true,
 })
 // Returns a string of 12 random characters from the base "abc123", with uppercase and numeric characters included
+```
+<br />
+
+`.shuffle(string, mixCount)`
+Returns a shuffled version of the provided string. Mix count is an optional argument, it dictates how much times the random swapping should take place.
+
+**Example Usage**:
+```ts
+RandomString.shuffle("hello world", 3)
+// Returns a string with same character after shuffling random indices 3 times
 ```

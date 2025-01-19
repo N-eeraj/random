@@ -66,7 +66,7 @@ test(`Return empty array with warning`, () => {
   expect(warnSpy).toHaveBeenLastCalledWith(`Warning: cannot shuffle list ${[]}, list too small, returning un-shuffled list.`)
 })
 
-test(`Return empty array with warning`, () => {
+test(`Return ${SINGLE_ITEM} array with warning`, () => {
   const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
   const values = RandomList.shuffle([SINGLE_ITEM])
   expect(values.length).toBe(1)
