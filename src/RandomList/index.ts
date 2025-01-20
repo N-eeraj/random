@@ -23,7 +23,7 @@ export default class RandomList {
     })]
   }
 
-  static shuffle(list: unknown[], mixCount?: number) {
+  static shuffle<ListItem>(list: Array<ListItem>, mixCount?: number): Array<ListItem> {
     // args validation
     checkIsOfType("list", "array", list)
     checkOptionalIsOfType("mixCount", "number", mixCount)
@@ -59,6 +59,34 @@ export default class RandomList {
         index2 = RandomNumber.int({ max: list.length - 1 })
       }
       [list[index1], list[index2]] = [list[index2], list[index1]]
+    }
+
+    return list
+  }
+
+  static sample<ListItem>(list: Array<ListItem>, sampleSize: number): Array<ListItem> {
+    // args validation
+    checkIsOfType("list", "array", list)
+    checkIsOfType("sampleSize", "number", sampleSize)
+
+    try {
+      checkMinValue("sampleSize", sampleSize, 1)
+    } catch {
+      if (sampleSize === 0) {
+        console.warn("Warning: received sample size 0, returning empty list.")
+        return []
+      }
+    }
+
+    try {
+      checkMinValue("list length", list.length, sampleSize - 1)
+    } catch {
+      if (list.length === sampleSize) {
+        console.warn("Warning: received sample size equal to list length, returning list.")
+        return list
+      } else {
+        throw new Error(`Sample size should be less than list length, received sample size ${sampleSize} for list of ${list.lastIndexOf} length`)
+      }
     }
 
     return list
