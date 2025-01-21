@@ -72,10 +72,12 @@ export default class RandomList {
     // check if sample size is valid
     try {
       checkMinValue("sampleSize", sampleSize, 1)
-    } catch {
+    } catch(error) {
       if (sampleSize === 0) {
         console.warn("Warning: received sample size 0, returning empty list.")
         return []
+      } else {
+        throw error
       }
     }
 
@@ -84,8 +86,8 @@ export default class RandomList {
       checkMinValue("list length", list.length - 1, sampleSize)
     } catch {
       if (list.length === sampleSize) {
-        console.warn("Warning: received sample size equal to list length, returning list.")
-        return list
+        console.warn("Warning: received sample size equal to list length, returning shuffled list.")
+        return this.shuffle(list)
       } else {
         throw new Error(`Sample size should be less than list length, received sample size ${sampleSize} for list of length ${list.length}`)
       }
