@@ -69,6 +69,7 @@ export default class RandomList {
     checkIsOfType("list", "array", list)
     checkIsOfType("sampleSize", "number", sampleSize)
 
+    // check if sample size is valid
     try {
       checkMinValue("sampleSize", sampleSize, 1)
     } catch {
@@ -78,17 +79,26 @@ export default class RandomList {
       }
     }
 
+    // check if list is of valid length
     try {
-      checkMinValue("list length", list.length, sampleSize - 1)
+      checkMinValue("list length", list.length - 1, sampleSize)
     } catch {
       if (list.length === sampleSize) {
         console.warn("Warning: received sample size equal to list length, returning list.")
         return list
       } else {
-        throw new Error(`Sample size should be less than list length, received sample size ${sampleSize} for list of ${list.lastIndexOf} length`)
+        throw new Error(`Sample size should be less than list length, received sample size ${sampleSize} for list of length ${list.length}`)
       }
     }
 
-    return list
+    const sample = []
+
+    while (sample.length < sampleSize) {
+      const index = RandomNumber.int({ max: list.length - 1 })
+      sample.push(list[index])
+      sample.splice(index, 1)
+    }
+
+    return sample
   }
 }
