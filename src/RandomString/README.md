@@ -1,6 +1,6 @@
 # RandomString
 
-The `RandomString` class provides six static methods to generate random strings based on the provided arguments. You can use these methods to generate random lower, upper or both case letters & alphanumerics.
+The `RandomString` class provides six static methods to generate random strings based on the provided arguments. You can use these methods to generate random lower, upper or both case letters & alphanumerics along with other operations such as generate string from a source string & shuffle string.
 
 ### Usage
 ```ts

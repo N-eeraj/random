@@ -1,6 +1,6 @@
 # RandomList
 
-The `RandomList` class provides two static methods to handle a few random array operations.
+The `RandomList` class provides three static methods to handle a few random array operations.
 
 ### Usage
 ```ts
@@ -29,4 +29,15 @@ Returns a shuffled version of the provided array. Mix count is an optional argum
 const array = [1, 2, "abc", { x: 5 }]
 RandomList.shuffle(array, 3)
 // Returns an array with same elements after shuffling random indices 3 times
+```
+<br />
+
+`.sample(array, sampleSize)`
+Returns a sample array (sub array) of the provided array of sampleSize length.
+
+**Example Usage**:
+```ts
+const array = [1, 2, "abc", { x: 5 }]
+RandomList.sample(array, 2)
+// Returns an array with 2 random elements from the original array
 ```
