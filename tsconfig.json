@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES6",               // Compile to ES6 JavaScript
-    "module": "commonjs",           // CommonJS module system (ideal for Node.js)
-    "outDir": "./dist",             // Output compiled JS files to the 'dist' folder
-    "rootDir": "./src",             // Source files are in the 'src' folder
-    "strict": true,                 // Enable strict type-checking options
-    "esModuleInterop": true,        // Enable interoperability between CommonJS and ES Modules
-    "skipLibCheck": true,           // Skip type checking of declaration files (can improve performance)
-    "forceConsistentCasingInFileNames": true
+    "target": "ES6",                            // Compile to ES6 JavaScript
+    "module": "commonjs",                       // CommonJS module system (ideal for Node.js)
+    "outDir": "./dist",                         // Output compiled JS files to the 'dist' folder
+    "rootDir": "./src",                         // Source files are in the 'src' folder
+    "strict": true,                             // Enable strict type-checking options
+    "esModuleInterop": true,                    // Enable interoperability between CommonJS and ES Modules
+    "skipLibCheck": true,                       // Skip type checking of declaration files (can improve performance)
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,                        // Generate type definition file (.d.ts)
   },
   "include": [
-    "src/**/*.ts"                   // Include all TypeScript files inside 'src'
+    "src/**/*.ts"                               // Include all TypeScript files inside 'src'
   ],
   "exclude": [
     "src/**/*.test.ts",
     "src/dev.ts",
-    "node_modules"                  // Exclude the 'node_modules' folder
-  ]
+    "node_modules",                             // Exclude the 'node_modules' folder
+  ],
 }

@@ -11,8 +11,6 @@ import type {
   FloatArrayArgs,
 } from "./types"
 
-
-
 export default class RandomNumber {
   /* v8 ignore start */
   static #getIntMinMax({ min, max }: IntArgs): MinMax {
